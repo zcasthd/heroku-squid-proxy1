@@ -14,4 +14,4 @@ fi
 
 htpasswd -cb /etc/squid/passwd "${USERNAME}" "${PASSWORD}"
 
-exec $(which squid) -NYCd 1 -a "${PORT}"
+exec $(which squid) -a ${PORT} -NYCd 1
