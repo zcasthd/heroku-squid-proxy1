@@ -36,7 +36,7 @@ COPY squid.conf /etc/squid/squid.conf
 RUN chmod a+x /entry.sh
 
 EXPOSE 3128/tcp
-RUN socat tcp-listen:$PORT,reuseaddr,fork tcp:localhost:3128
+RUN socat tcp-listen:3128,reuseaddr,fork tcp:localhost:$PORT
 
 
 ENTRYPOINT ["/entry.sh"]
