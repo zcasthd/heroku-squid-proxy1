@@ -39,4 +39,3 @@ EXPOSE 3128/tcp
 
 
 ENTRYPOINT ["/entry.sh"]
-RUN ( socat tcp-listen:3128,reuseaddr,fork tcp:localhost:$PORT )
