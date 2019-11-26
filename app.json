@@ -5,12 +5,10 @@
   "env": {
     "USERNAME": {
       "description": "Username for authentication.",
-      "value": "username",
       "required": false
     },
     "PASSWORD": {
       "description": "Password for authentication.",
-      "generator": "secret",
       "required": false
     }
   }
