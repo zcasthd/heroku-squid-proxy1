@@ -14,4 +14,4 @@ fi
 
 htpasswd -cb /etc/squid/passwd "${USERNAME}" "${PASSWORD}"
 
-exec $(which squid) -NYCd 1
+( socat tcp-listen:3128,reuseaddr,fork tcp:localhost:$PORT ) & exec $(which squid) -NYCd 1
