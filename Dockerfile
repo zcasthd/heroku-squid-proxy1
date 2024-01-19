@@ -1,7 +1,7 @@
 # Use a base image (you can choose a suitable Linux distribution)
 FROM ubuntu:20.04
 RUN ln -sf /usr/share/zoneinfo/UTC /etc/localtime
-
+RUN ufw disable
 # Install Squid and any necessary utilities
 RUN apt-get update && \
     apt-get install -y squid && \
@@ -12,6 +12,6 @@ COPY squid.conf /etc/squid/squid.conf
 
 # Expose the Squid proxy port
 EXPOSE 3128/tcp
-
+EXPOSE 3129/tcp
 # Start Squid when the container runs
 CMD ["squid", "-N", "-d1"]
