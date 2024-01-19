@@ -1,15 +1,16 @@
-FROM alpine:latest
-RUN apk add --no-cache  git make go squid python3
-WORKDIR /home
-RUN git clone https://github.com/cbeuw/Cloak.git
-WORKDIR /home/Cloak
-RUN go get ./...
-RUN make && make install
-WORKDIR /home
-RUN rm -rf Cloak
-RUN apk del make go git 
-COPY ckserver_template.json /home
-RUN mkdir /config
-COPY start.py /home
-ENTRYPOINT ["python3", "/home/start.py"]
-RUN echo "Build success I guess?"
+# Use a base image (you can choose a suitable Linux distribution)
+FROM ubuntu:20.04
+
+# Install Squid and any necessary utilities
+RUN apt-get update && \
+    apt-get install -y squid && \
+    apt-get clean
+
+# Copy your custom Squid configuration file
+COPY squid.conf /etc/squid/squid.conf
+
+# Expose the Squid proxy port
+EXPOSE 3128/tcp
+
+# Start Squid when the container runs
+CMD ["squid", "-N", "-d1"]
