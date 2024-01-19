@@ -12,7 +12,6 @@ RUN apt-get update && \
 COPY squid.conf /etc/squid/squid.conf
 
 # Expose the Squid proxy port
-EXPOSE 3128/tcp
-EXPOSE 3129/tcp
+EXPOSE $PORT
 # Start Squid when the container runs
 CMD ["squid", "-N", "-d1"]
