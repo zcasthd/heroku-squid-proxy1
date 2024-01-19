@@ -1,5 +1,6 @@
 # Use a base image (you can choose a suitable Linux distribution)
 FROM ubuntu:20.04
+RUN ln -sf /usr/share/zoneinfo/UTC /etc/localtime
 
 # Install Squid and any necessary utilities
 RUN apt-get update && \
