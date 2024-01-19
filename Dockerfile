@@ -12,7 +12,7 @@ COPY start-squid.sh /start-squid.sh
 RUN chmod +x /start-squid.sh
 
 # Expose the Squid proxy port (you can use the PORT environment variable Heroku provides)
-EXPOSE $PORT/tcp
+EXPOSE $PORT
 
 # Start the startup script
 CMD ["/start-squid.sh"]
