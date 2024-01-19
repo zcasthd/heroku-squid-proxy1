@@ -20,7 +20,7 @@
 # OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 # SOFTWARE.
 
-FROM heroku/heroku:18
+FROM heroku/heroku:20
 MAINTAINER Yegor Bugayenko <yegor256@gmail.com>
 LABEL Description="Squid forward proxy with authorization" Vendor="Yegor Bugayenko" Version="0.1"
 
