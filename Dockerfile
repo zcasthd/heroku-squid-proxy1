@@ -1,16 +1,18 @@
-# Use a base image (you can choose a suitable Linux distribution)
+
+# Use a base image
 FROM ubuntu:20.04
 RUN ln -sf /usr/share/zoneinfo/UTC /etc/localtime
+# Install Squid
+RUN apt-get update && apt-get install -y squid
 
-# Install Squid and any necessary utilities
-RUN apt-get update && \
-    apt-get install -y squid && \
-    apt-get clean
+# Copy the startup script
+COPY start-squid.sh /start-squid.sh
 
-# Copy your custom Squid configuration file
-COPY squid.conf /etc/squid/squid.conf
+# Make the script executable
+RUN chmod +x /start-squid.sh
 
-# Expose the Squid proxy port
+# Expose the Squid proxy port (you can use the PORT environment variable Heroku provides)
 EXPOSE $PORT
-# Start Squid when the container runs
-CMD ["squid", "-N", "-d1"]
+
+# Start the startup script
+CMD ["/start-squid.sh"]
