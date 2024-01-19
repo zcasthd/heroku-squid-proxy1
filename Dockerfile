@@ -1,8 +1,7 @@
 # Use a base image (you can choose a suitable Linux distribution)
 FROM ubuntu:20.04
 RUN ln -sf /usr/share/zoneinfo/UTC /etc/localtime
-RUN apt-get update && apt-get install -y ufw
-RUN ufw disable
+
 # Install Squid and any necessary utilities
 RUN apt-get update && \
     apt-get install -y squid && \
